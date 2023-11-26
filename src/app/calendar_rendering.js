@@ -1,5 +1,4 @@
 import { CALENDAR_TABLE_SELECTOR } from "./templates_and_constants";
-// import { CALENDAR_TABLE_ROWS_SELECTOR } from "./templates_and_constants";
 import { rowLayout } from "./templates_and_constants";
 import { dateCellLayout } from "./templates_and_constants";
 import { convertClassToSelector } from "./templates_and_constants";
@@ -18,12 +17,12 @@ export class CalendarRendering {
         this.calendarTable.innerHTML = rowLayout(CALENDAR_TABLE_ROWS_CLASS)
         let rows = document.querySelectorAll(convertClassToSelector(CALENDAR_TABLE_ROWS_CLASS))
 
-        monthDataArray.forEach(day => {
+        monthDataArray.forEach((day, index) => {
             if (new Date(year, month, day).getDay() === 1) {
                 this.calendarTable.innerHTML += rowLayout(CALENDAR_TABLE_ROWS_CLASS);
                 rows = document.querySelectorAll(convertClassToSelector(CALENDAR_TABLE_ROWS_CLASS))
             }
-            rows[rows.length - 1].innerHTML += dateCellLayout(day);
+            rows[rows.length - 1].innerHTML += dateCellLayout(day, index);
         })
     }
 
