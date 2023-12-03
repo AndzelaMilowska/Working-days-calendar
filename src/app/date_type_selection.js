@@ -5,33 +5,41 @@ import { DATE_STYLE_CLASSES } from "./templates_and_constants";
 export class DateTypeSelection {
     static dateTypeClass
     static selectWorkingDays() {
-        let indexOfClickedElement
         //take mouseover out from click event
         //make click event responsible only for returning clicked Index and clicked
         const daysInMonthArray = Object.values(document.querySelectorAll(DATE_SELECTOR))
         daysInMonthArray.forEach((clickedElement, clickedIndex) => clickedElement.addEventListener('click', () => {
-            element.setAttribute(isClicked, true)
+            const condition = (element) => element.hasAttribute('isClicked')
+            if(daysInMonthArray.some(condition)) {
+                const clickedDay =daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
+                console.log(`clicked day index: ${clickedDay[0].getAttribute('isClicked')}`)
+                clickedDay[0].removeAttribute('isClicked')
+            }
+            else {
+                clickedElement.setAttribute('isClicked', clickedIndex)
+            }
+           
+           
         }))
+    }
+    static hoverWorkingDays() {
+        daysInMonthArray.forEach((hoveredElement, hoveredIndex) => {
+            function selectActive() {
+                console.log(`Hovered Index is: ${hoveredIndex}`)
+            }
 
-            daysInMonthArray.forEach((hoveredElement, hoveredIndex) => {
-                function selectActive() {
-                    console.log(`Hovered Index is: ${hoveredIndex}`)
-                }
-                
-                if(clicledStatus) {
-                    console.log('added')
-                    hoveredElement.addEventListener('mouseover', selectActive)
-                }
-                else {
-                    console.log('removed')
-                    hoveredElement.removeEventListener('mouseover', selectActive)
-                }
-                // hoveredElement.removeEventListener('mouseover', selectActive)
-                // hoveredElement.addEventListener('mouseover', selectActive)
-                
-            })
-        
-       
+            if (clicledStatus) {
+                console.log('added')
+                hoveredElement.addEventListener('mouseover', selectActive)
+            }
+            else {
+                console.log('removed')
+                hoveredElement.removeEventListener('mouseover', selectActive)
+            }
+            // hoveredElement.removeEventListener('mouseover', selectActive)
+            // hoveredElement.addEventListener('mouseover', selectActive)
+
+        })
 
     }
 }
