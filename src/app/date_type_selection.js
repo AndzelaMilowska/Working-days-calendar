@@ -2,45 +2,70 @@ import { DATE_TYPE_CLASSES } from "./templates_and_constants";
 import { DATE_SELECTOR } from "./templates_and_constants";
 import { DATE_STYLE_CLASSES } from "./templates_and_constants";
 
+
 export class DateTypeSelection {
     static dateTypeClass
     static selectWorkingDays() {
-        //take mouseover out from click event
-        //make click event responsible only for returning clicked Index and clicked
+        let findWorkingDays = () => document.querySelectorAll(`.${DATE_STYLE_CLASSES.workingDaysTemporary}`)
+        const calendarTable = document.querySelector('.calendar-table')
         const daysInMonthArray = Object.values(document.querySelectorAll(DATE_SELECTOR))
-        daysInMonthArray.forEach((clickedElement, clickedIndex) => clickedElement.addEventListener('click', () => {
-            const condition = (element) => element.hasAttribute('isClicked')
-            if(daysInMonthArray.some(condition)) {
-                const clickedDay =daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
-                console.log(`clicked day index: ${clickedDay[0].getAttribute('isClicked')}`)
+        //mousedown event
+        daysInMonthArray.forEach((element, index) => element.addEventListener('mousedown', (e) => {
+            e.target.setAttribute('isClicked', index)
+
+        }))
+
+        //mouseover event
+        daysInMonthArray.forEach((date, index) => date.addEventListener('mouseover', (e) => {
+            if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) {
+                const clickedDay = daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
+                let clickedIndex = Number(clickedDay[0].getAttribute('isClicked'))
+                if (index >= clickedIndex) {
+                    daysInMonthArray.forEach(element => {
+                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                    })
+                    daysInMonthArray.slice(clickedIndex, index + 1).forEach(element => {
+                        element.classList.add(DATE_STYLE_CLASSES.workingDaysTemporary);
+                    })
+                    daysInMonthArray.slice(index + 1, 34).forEach(element => {
+                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                    })
+                }
+
+                if (index <= clickedIndex) {
+                    daysInMonthArray.forEach(element => {
+                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                    })
+                    daysInMonthArray.slice(index, clickedIndex + 1).forEach(element => {
+                        element.classList.add(DATE_STYLE_CLASSES.workingDaysTemporary);
+                    })
+                    daysInMonthArray.slice(0, index).forEach(element => {
+                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                    })
+                }
+
+            }
+        }))
+
+        //mouseleave event
+        calendarTable.addEventListener('mouseleave', () => {
+            if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) {
+                const workingDays = findWorkingDays()
+                workingDays.forEach(day => day.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary))
+                const clickedDay = daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
                 clickedDay[0].removeAttribute('isClicked')
             }
-            else {
-                clickedElement.setAttribute('isClicked', clickedIndex)
-            }
-           
-           
-        }))
-    }
-    static hoverWorkingDays() {
-        daysInMonthArray.forEach((hoveredElement, hoveredIndex) => {
-            function selectActive() {
-                console.log(`Hovered Index is: ${hoveredIndex}`)
-            }
-
-            if (clicledStatus) {
-                console.log('added')
-                hoveredElement.addEventListener('mouseover', selectActive)
-            }
-            else {
-                console.log('removed')
-                hoveredElement.removeEventListener('mouseover', selectActive)
-            }
-            // hoveredElement.removeEventListener('mouseover', selectActive)
-            // hoveredElement.addEventListener('mouseover', selectActive)
-
         })
 
+        //mouseup event
+        daysInMonthArray.forEach((element) => element.addEventListener('mouseup', () => {
+            if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) { 
+                const workingDays = findWorkingDays()
+                workingDays.forEach(day => day.classList.replace(DATE_STYLE_CLASSES.workingDaysTemporary, DATE_STYLE_CLASSES.workingDays))
+                const clickedDay = daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
+                clickedDay[0].removeAttribute('isClicked')
+            }
+        }))
     }
 }
 
@@ -52,52 +77,9 @@ export class DateTypeSelection {
 */
 
 /*
-hover listener 
-daj klase tymczasową jeśli:
-jeśli hovered value jest większe równe clicked value to:
-hovered value jest większa równa klikkniętej wartości i mniejsza równa current hover
-lub 
-daj klase tymczasową 
-
 
 !! element.classList.remove("my-class");
 !! element.classList.add("my-class");
-Event listener click 
-Event listener hover
-Hover value for i < hover &  i > clicked value  {add high importance class style }
-Else
+
 {remove high importance style class}
-*/
-
-
-
-
-
-/*
-daysInMonthArray.forEach((hoveredElement, hoveredIndex) => hoveredElement.addEventListener('mouseover', () => {
-            if (hoveredIndex >= clickedIndex) {
-                daysInMonthArray.forEach(element => {
-                    element.classList.remove(DATE_STYLE_CLASSES.daysOff);
-                })
-                daysInMonthArray.slice(clickedIndex, hoveredIndex+1).forEach(element => {
-                    element.classList.add(DATE_STYLE_CLASSES.daysOff);
-                })
-                daysInMonthArray.slice(hoveredIndex+1, 34).forEach(element => {
-                    element.classList.remove(DATE_STYLE_CLASSES.daysOff);
-                })
-            }
-
-            if (hoveredIndex <= clickedIndex) {
-                daysInMonthArray.forEach(element => {
-                    element.classList.remove(DATE_STYLE_CLASSES.daysOff);
-                })
-                daysInMonthArray.slice(hoveredIndex, clickedIndex+1).forEach(element => {
-                    element.classList.add(DATE_STYLE_CLASSES.daysOff);
-                })
-                daysInMonthArray.slice(0, hoveredIndex).forEach(element => {
-                    element.classList.remove(DATE_STYLE_CLASSES.daysOff);
-                })
-            }
-            
-        }))
 */

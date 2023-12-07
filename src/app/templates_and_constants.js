@@ -1,6 +1,6 @@
 
 export function rowLayout(rowClass) { return `<tr class=${rowClass}></tr>` }
-export function dateCellLayout(date, number) { return `<td class="date" index='${number}' >${date}</td>` }
+export function dateCellLayout(date, number) { return `<td class="date user-select-none text-bg-primary rounded-circle" index='${number}' >${date}</td>` }
 export function convertClassToSelector(className) {return '.' + className}
 export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 export const CALENDAR_TABLE_ROWS_CLASS = 'calendar-table__row'
@@ -15,7 +15,9 @@ export const DATE_TYPE_CLASSES = {
     weekends: 'weekends'
 }
 export const DATE_STYLE_CLASSES = {
-    workingDays: "text-info",
+    workingDaysTemporary: "text-info",
     daysOff: "text-info",
-    weekends: "text-info"
+    weekends: "text-info",
+    workingDays: "text-success",
+
 }
