@@ -68,18 +68,3 @@ export class DateTypeSelection {
         }))
     }
 }
-
-
-/*
-
-// day.classList.add(DATE_STYLE_CLASSES.daysOff);
-// console.log(`clicked: ${day.getAttribute('index')}`)
-*/
-
-/*
-
-!! element.classList.remove("my-class");
-!! element.classList.add("my-class");
-
-{remove high importance style class}
-*/

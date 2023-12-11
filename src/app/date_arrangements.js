@@ -27,6 +27,14 @@ export class DateArrangements {
         for (let i = 0; i < lastDay; i++) {
             this.monthCellsArray.push(i + 1)
         }
+
+        if (this.monthCellsArray.length < 35) {
+            let currentMonthLength = 35-this.monthCellsArray.length
+            for (let i=0; i < currentMonthLength; i++) {
+                this.monthCellsArray.push('')
+            }
+            
+        }
     }
 
 }

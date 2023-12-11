@@ -5,7 +5,6 @@ import { convertClassToSelector } from "./templates_and_constants";
 import { CALENDAR_TABLE_ROWS_CLASS } from "./templates_and_constants";
 import { CURRENT_MONTH_SELECTOR } from "./templates_and_constants";
 import { MONTHS } from "./templates_and_constants";
-import { CalendarArrangements } from "./calendar_arrangements";
 import { DateArrangements } from "./date_arrangements";
 import { DateTypeSelection } from "./date_type_selection";
 
@@ -32,7 +31,6 @@ export class CalendarRendering {
 
     static runMonthRender(month, year) {
         CalendarRendering.setMonthHeader(month)
-
         DateArrangements.createMonthCellsArray(DateArrangements.getDayOfTheMonth(1), DateArrangements.daysInMonth(year, month))
         CalendarRendering.renderMonth(DateArrangements.monthCellsArray, year, month)
         DateTypeSelection.selectWorkingDays()
