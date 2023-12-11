@@ -1,5 +1,18 @@
+@import './variables.scss' ;
+
 .date {
     cursor: pointer;
-    width: 2rem;
-    height: 2rem;
+    height: 5rem;
+}
+
+.working-days-temp, .working-days {
+    background-color: $working-days-temp;
+}
+
+.days-off {
+    background-color: $days-off;
+}
+
+.weekends {
+    background-color: $weekends;
 }
