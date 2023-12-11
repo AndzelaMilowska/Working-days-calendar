@@ -5,8 +5,20 @@
     height: 5rem;
 }
 
-.working-days-temp, .working-days {
-    background-color: $working-days-temp;
+.working-days-temp {
+    background-color: $working-days!important;
+}
+
+.days-off-temp {
+    background-color: $days-off!important;
+}
+
+.weekends-temp {
+    background-color: $weekends!important;
+}
+
+.working-days {
+    background-color: $working-days;
 }
 
 .days-off {

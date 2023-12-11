@@ -36,5 +36,3 @@ export class CalendarRendering {
         DateTypeSelection.selectWorkingDays()
     }
 }
-
-//

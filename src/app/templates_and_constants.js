@@ -10,10 +10,8 @@ export const NEXT_MONTH_BUTTON_SELECTOR = '.month-navigation__next'
 export const PREVIOUS_MONTH_BUTTON_SELECTOR = '.month-navigation__previous'
 export const DATE_SELECTOR = '.date'
 export const DATE_STYLE_CLASSES = {
-    workingDaysTemporary: "working-days-temp",
     daysOff: "days-off",
     weekends: "weekends",
     workingDays: "working-days",
-
 }
 

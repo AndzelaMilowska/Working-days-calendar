@@ -1,12 +1,12 @@
-import { DATE_TYPE_CLASSES } from "./templates_and_constants";
+
 import { DATE_SELECTOR } from "./templates_and_constants";
 import { DATE_STYLE_CLASSES } from "./templates_and_constants";
-
+import { DateTypeSetter } from "./set_date_type";
+//DateTypeSetter.dateType
 
 export class DateTypeSelection {
-    static dateTypeClass
     static selectWorkingDays() {
-        let findWorkingDays = () => document.querySelectorAll(`.${DATE_STYLE_CLASSES.workingDaysTemporary}`)
+        let findWorkingDays = () => document.querySelectorAll(`.${DateTypeSetter.dateType}-temp`)
         const calendarTable = document.querySelector('.calendar-table')
         const daysInMonthArray = Object.values(document.querySelectorAll(DATE_SELECTOR))
         //mousedown event
@@ -22,25 +22,25 @@ export class DateTypeSelection {
                 let clickedIndex = Number(clickedDay[0].getAttribute('isClicked'))
                 if (index >= clickedIndex) {
                     daysInMonthArray.forEach(element => {
-                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                        element.classList.remove(`${DateTypeSetter.dateType}-temp`);
                     })
                     daysInMonthArray.slice(clickedIndex, index + 1).forEach(element => {
-                        element.classList.add(DATE_STYLE_CLASSES.workingDaysTemporary);
+                        element.classList.add(`${DateTypeSetter.dateType}-temp`);
                     })
                     daysInMonthArray.slice(index + 1, 34).forEach(element => {
-                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                        element.classList.remove(`${DateTypeSetter.dateType}-temp`);
                     })
                 }
 
                 if (index <= clickedIndex) {
                     daysInMonthArray.forEach(element => {
-                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                        element.classList.remove(`${DateTypeSetter.dateType}-temp`);
                     })
                     daysInMonthArray.slice(index, clickedIndex + 1).forEach(element => {
-                        element.classList.add(DATE_STYLE_CLASSES.workingDaysTemporary);
+                        element.classList.add(`${DateTypeSetter.dateType}-temp`);
                     })
                     daysInMonthArray.slice(0, index).forEach(element => {
-                        element.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary);
+                        element.classList.remove(`${DateTypeSetter.dateType}-temp`);
                     })
                 }
 
@@ -51,17 +51,24 @@ export class DateTypeSelection {
         calendarTable.addEventListener('mouseleave', () => {
             if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) {
                 const workingDays = findWorkingDays()
-                workingDays.forEach(day => day.classList.remove(DATE_STYLE_CLASSES.workingDaysTemporary))
+                workingDays.forEach(day => day.classList.remove(`${DateTypeSetter.dateType}-temp`))
                 const clickedDay = daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
                 clickedDay[0].removeAttribute('isClicked')
             }
         })
 
         //mouseup event
-        daysInMonthArray.forEach((element) => element.addEventListener('mouseup', () => {
+        daysInMonthArray.forEach((element) => element.addEventListener('mouseup', (event) => {
+            if (event.target.hasAttribute('isClicked')) {
+                event.target.classList.add(`${DateTypeSetter.dateType}-temp`)
+            }
+
             if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) { 
                 const workingDays = findWorkingDays()
-                workingDays.forEach(day => day.classList.replace(DATE_STYLE_CLASSES.workingDaysTemporary, DATE_STYLE_CLASSES.workingDays))
+                workingDays.forEach(day => day.classList.remove(DATE_STYLE_CLASSES.daysOff))
+                workingDays.forEach(day => day.classList.remove(DATE_STYLE_CLASSES.weekends))
+                workingDays.forEach(day => day.classList.remove(DATE_STYLE_CLASSES.workingDays))
+                workingDays.forEach(day => day.classList.replace(`${DateTypeSetter.dateType}-temp`, `${DateTypeSetter.dateType}`))
                 const clickedDay = daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
                 clickedDay[0].removeAttribute('isClicked')
             }
