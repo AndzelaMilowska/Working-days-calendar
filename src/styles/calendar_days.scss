@@ -5,6 +5,9 @@ height: 2rem;
 width: 2rem;
 }
 
+.empty-cells {
+    visibility: hidden;
+}
 .date-wrapper {
     cursor: pointer;
     height: 5rem;

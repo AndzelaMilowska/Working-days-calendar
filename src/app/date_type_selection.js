@@ -2,21 +2,27 @@
 import { DATE_SELECTOR } from "./templates_and_constants";
 import { DATE_STYLE_CLASSES } from "./templates_and_constants";
 import { DateTypeSetter } from "./set_date_type";
-//DateTypeSetter.dateType
 
 export class DateTypeSelection {
     static selectWorkingDays() {
         let findWorkingDays = () => document.querySelectorAll(`.${DateTypeSetter.dateType}-temp`)
         const calendarTable = document.querySelector('.calendar-table')
         const daysInMonthArray = Object.values(document.querySelectorAll(DATE_SELECTOR))
-        //mousedown event
-        daysInMonthArray.forEach((element, index) => element.addEventListener('mousedown', (e) => {
-            e.target.setAttribute('isClicked', index)
 
+        //empty-cells
+        daysInMonthArray.forEach((element) => {
+            if(element.innerHTML=='') {
+                element.classList.add(`empty-cells`)
+            }
+        })
+
+        //mousedown event
+        daysInMonthArray.forEach((element, index) => element.parentElement.addEventListener('mousedown', (e) => {
+            element.setAttribute('isClicked', index)
         }))
 
         //mouseover event
-        daysInMonthArray.forEach((date, index) => date.addEventListener('mouseover', (e) => {
+        daysInMonthArray.forEach((date, index) => date.parentElement.addEventListener('mouseover', (e) => {
             if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) {
                 const clickedDay = daysInMonthArray.filter(day => day.hasAttribute('isClicked'))
                 let clickedIndex = Number(clickedDay[0].getAttribute('isClicked'))
@@ -58,9 +64,9 @@ export class DateTypeSelection {
         })
 
         //mouseup event
-        daysInMonthArray.forEach((element) => element.addEventListener('mouseup', (event) => {
-            if (event.target.hasAttribute('isClicked')) {
-                event.target.classList.add(`${DateTypeSetter.dateType}-temp`)
+        daysInMonthArray.forEach((element) => element.parentElement.addEventListener('mouseup', (event) => {
+            if (element.hasAttribute('isClicked')) {
+                element.classList.add(`${DateTypeSetter.dateType}-temp`)
             }
 
             if (daysInMonthArray.some((day) => day.hasAttribute('isClicked'))) { 
