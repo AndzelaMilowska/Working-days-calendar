@@ -1,6 +1,6 @@
 
 export function rowLayout(rowClass) { return `<div class="${rowClass} row w-100 d-inline-flex justify-content-around"></div>` }
-export function dateCellLayout(date, number) { return `<div class="col d-flex align-items-center justify-content-center border border-1 date user-select-none" index='${number}' >${date}</div>` }
+export function dateCellLayout(date, number) { return `<div class='date-wrapper col  d-flex justify-content-end user-select-none p-2'> <div class="date rounded-circle d-flex align-items-center justify-content-center" index='${number}' >${date}</div></div>` }
 export function convertClassToSelector(className) {return '.' + className}
 export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 export const CALENDAR_TABLE_ROWS_CLASS = 'calendar-table__row'

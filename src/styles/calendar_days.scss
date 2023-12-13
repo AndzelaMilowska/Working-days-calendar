@@ -1,8 +1,19 @@
 @import './variables.scss' ;
 
 .date {
+height: 2rem;
+width: 2rem;
+}
+
+.date-wrapper {
     cursor: pointer;
     height: 5rem;
+    border-color: aqua;
+    border: 1px solid rgba(255, 255, 255, 0.100);
+}
+
+.date-wrapper:has(.weekends) {
+    background-color: rgba(255, 255, 255, 0.010);
 }
 
 .working-days-temp {
