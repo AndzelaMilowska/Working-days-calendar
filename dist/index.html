@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700&family=Silkscreen&display=swap" rel="stylesheet">
+  <title>
+    Working days calendar
+  </title>
+<link href="main.css" rel="stylesheet"></head>
+<body>
+  <div class = 'calendar-container w-75 container bg-dark rounded-3 m-5 text-light'>
+  <nav class = 'month-navigation d-inline-flex w-100 justify-content-center m-3 align-items-center'>
+  <button class="month-navigation__previous button mx-5" type="button">⋘</button>
+  <h2 class = "month-navigation__current-month text-center"></h2>
+  <button class="month-navigation__next button mx-5" type="button">⋙</button>
+  </nav>
+  <section class="container text-center d-flex align-items-center flex-column justify-content-center">
+    <nav class = 'my-1 row w-100 d-inline-flex justify-content-around'>
+        <h3 class="col fw-light fs-5">mon.</h3>
+        <h3 class="col fw-light fs-5" >tues.</h3>
+        <h3 class="col fw-light fs-5" >wed.</h3>
+        <h3 class="col fw-light fs-5" >thur.</h3>
+        <h3 class="col fw-light fs-5" >fri.</h3>
+        <h3 class="col fw-light fs-5" >sat.</h3>
+        <h3 class="col fw-light fs-5" >sun.</h3>
+    </nav>
+    <div class = 'my-1 row w-100 calendar-table d-flex align-items-center flex-column justify-content-center'>
+    </div>
+  </section>
+  <nav class = 'd-inline-flex w-100 justify-content-center m-3 date-style-nav'>
+  <button class="date_type_selector m-1 rounded-1 date-type_button days-off days-off__button" date-type = 'daysOff' type="button"> days off </button>
+  <button class="date_type_selector m-1 rounded-1 date-type_button working-days working-days__button" date-type = 'workingDays' type="button"> working days </button>
+  <button class="date_type_selector m-1 rounded-1 date-type_button weekends weekends__button" date-type = 'weekends' type="button"> weekends </button>
+</nav>
+</div>
+<button class='save-button'><svg fill="#ffffff" height="1.5rem" width="1.5rem" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330.002 330.002" xml:space="preserve" stroke="#ffffff" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_105_" d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"></path> </g></svg></button>
+<script defer src="main.js"></script></body>
+
+
+</html>
