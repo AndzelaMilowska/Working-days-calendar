@@ -49,7 +49,6 @@ export class DateTypeSelection {
                         element.classList.remove(`${DateTypeSetter.dateType}-temp`);
                     })
                 }
-
             }
         }))
 

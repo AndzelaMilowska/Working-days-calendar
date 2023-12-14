@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+.save-button {
+position:absolute;
+top: 2rem;
+right:2rem;
+background-color: $grey01;
+border-radius: 50%;
+padding: 0.5rem;
+}
+
+@media print {
+    button {
+        visibility: hidden;
+    }
+
+    .date-style-nav {
+        position:absolute;
+        visibility: hidden;
+    }
+
+    .calendar-container {
+        padding-bottom: 3rem;
+        transform: scale(1.05);
+    }
+    body {
+        padding-top: 3rem;
+    }
+}

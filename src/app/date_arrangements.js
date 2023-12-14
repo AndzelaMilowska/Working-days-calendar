@@ -33,8 +33,6 @@ export class DateArrangements {
             for (let i=0; i < currentMonthLength; i++) {
                 this.monthCellsArray.push('')
             }
-            
         }
     }
-
 }

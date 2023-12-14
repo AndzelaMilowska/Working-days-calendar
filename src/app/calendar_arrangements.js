@@ -1,8 +1,8 @@
 import { NEXT_MONTH_BUTTON_SELECTOR } from "./templates_and_constants";
 import { PREVIOUS_MONTH_BUTTON_SELECTOR } from "./templates_and_constants";
-
 import { DateArrangements } from "./date_arrangements";
 import { CalendarRendering } from "./calendar_rendering";
+
 export class CalendarArrangements {
     static changeMonthListener() {
         const nextMonthButton = document.querySelector(NEXT_MONTH_BUTTON_SELECTOR)
@@ -16,6 +16,4 @@ export class CalendarArrangements {
             CalendarRendering.runMonthRender(DateArrangements.month(), DateArrangements.year())
         })
     }
-
-
 }
