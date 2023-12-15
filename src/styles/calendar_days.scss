@@ -1,0 +1,44 @@
+@import './variables.scss' ;
+
+.date {
+height: 2rem;
+width: 2rem;
+}
+
+.empty-cells {
+    visibility: hidden;
+}
+.date-wrapper {
+    cursor: pointer;
+    height: 5rem;
+    border-color: aqua;
+    border: 1px solid $grey01;
+}
+
+.date-wrapper:has(.weekends) {
+    background-color: rgba(255, 255, 255, 0.010);
+}
+
+.working-days-temp {
+    background-color: $working-days!important;
+}
+
+.days-off-temp {
+    background-color: $days-off!important;
+}
+
+.weekends-temp {
+    background-color: $weekends!important;
+}
+
+.working-days {
+    background-color: $working-days;
+}
+
+.days-off {
+    background-color: $days-off;
+}
+
+.weekends {
+    background-color: $weekends;
+}
