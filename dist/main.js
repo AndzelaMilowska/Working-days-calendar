@@ -123,7 +123,7 @@ var CalendarRendering = /*#__PURE__*/function () {
       this.calendarTable.innerHTML = (0,_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.rowLayout)(_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.CALENDAR_TABLE_ROWS_CLASS);
       var rows = document.querySelectorAll((0,_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.convertClassToSelector)(_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.CALENDAR_TABLE_ROWS_CLASS));
       monthDataArray.forEach(function (day, index) {
-        if (new Date(year, month, day).getDay() === 1) {
+        if (new Date(year, month, day).getDay() === 1 && day != '') {
           _this.calendarTable.innerHTML += (0,_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.rowLayout)(_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.CALENDAR_TABLE_ROWS_CLASS);
           rows = document.querySelectorAll((0,_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.convertClassToSelector)(_templates_and_constants__WEBPACK_IMPORTED_MODULE_0__.CALENDAR_TABLE_ROWS_CLASS));
         }
@@ -188,10 +188,10 @@ var DateArrangements = /*#__PURE__*/function () {
     value: function createMonthCellsArray(firstDay, lastDay) {
       this.monthCellsArray = [];
       if (firstDay === 0) {
-        this.monthCellsArray = ['', '', '', '', '', ''];
+        this.monthCellsArray = ["", "", "", "", "", ""];
       }
       for (var i = 0; i < firstDay - 1; i++) {
-        this.monthCellsArray.push('');
+        this.monthCellsArray.push("");
       }
       for (var _i = 0; _i < lastDay; _i++) {
         this.monthCellsArray.push(_i + 1);
@@ -199,7 +199,12 @@ var DateArrangements = /*#__PURE__*/function () {
       if (this.monthCellsArray.length < 35) {
         var currentMonthLength = 35 - this.monthCellsArray.length;
         for (var _i2 = 0; _i2 < currentMonthLength; _i2++) {
-          this.monthCellsArray.push('');
+          this.monthCellsArray.push("");
+        }
+      } else if (this.monthCellsArray.length > 35) {
+        var _currentMonthLength = 42 - this.monthCellsArray.length;
+        for (var _i3 = 0; _i3 < _currentMonthLength; _i3++) {
+          this.monthCellsArray.push("");
         }
       }
     }

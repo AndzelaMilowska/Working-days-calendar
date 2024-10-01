@@ -17,7 +17,7 @@ export class CalendarRendering {
         let rows = document.querySelectorAll(convertClassToSelector(CALENDAR_TABLE_ROWS_CLASS))
 
         monthDataArray.forEach((day, index) => {
-            if (new Date(year, month, day).getDay() === 1) {
+            if (new Date(year, month, day).getDay() === 1 && day !='') {
                 this.calendarTable.innerHTML += rowLayout(CALENDAR_TABLE_ROWS_CLASS);
                 rows = document.querySelectorAll(convertClassToSelector(CALENDAR_TABLE_ROWS_CLASS))
             }
